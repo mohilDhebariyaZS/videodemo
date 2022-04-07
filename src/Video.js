@@ -22,6 +22,17 @@ const Video = () => {
   const callUser = (id) => {
     const peer = new Peer({
       initiator: true,
+      config: {
+        iceServers: [
+          { urls: "stun:stun.l.google.com:19302" },
+          { urls: "stun:stun1.l.google.com:19302" },
+          { urls: "stun:stun2.l.google.com:19302" },
+          { urls: "stun:stun3.l.google.com:19302" },
+          { urls: "stun:stun4.l.google.com:19302" },
+          { urls: "stun:global.stun.twilio.com:3478?transport=udp" },
+        ],
+      },
+
       trickle: false,
       stream: stream,
     });
@@ -42,6 +53,16 @@ const Video = () => {
   const answerCall = () => {
     const peer = new Peer({
       initiator: false,
+      config: {
+        iceServers: [
+          { urls: "stun:stun.l.google.com:19302" },
+          { urls: "stun:stun1.l.google.com:19302" },
+          { urls: "stun:stun2.l.google.com:19302" },
+          { urls: "stun:stun3.l.google.com:19302" },
+          { urls: "stun:stun4.l.google.com:19302" },
+          { urls: "stun:global.stun.twilio.com:3478?transport=udp" },
+        ],
+      },
       trickle: false,
       stream: stream,
     });
@@ -58,7 +79,6 @@ const Video = () => {
 
     connectionRef.current = peer;
   };
-
 
   const submitRef = () => {
     console.log("Sdp Value is ", JSON.parse(inputRef.current.value));
